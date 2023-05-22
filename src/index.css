@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("./fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins-Medium";
+  src: url("./fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Al-Jazeera-Arabic Bold";
+  src: url("./fonts/Al-Jazeera-Arabic\ Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Almarai-Bold";
+  src: url("./fonts/Almarai-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ElMessiri-Bold";
+  src: url("./fonts/ElMessiri-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.navbar-container .nav-sidebar {
+  height: calc(100vh - 60px);
+}
+
+h1,
+h2,
+label,
+span,
+p,
+a,
+option,
+button {
+  font-family: "Almarai-Bold";
+}
+h3,
+select {
+  font-family: "ElMessiri-Bold";
+}
+
+caption,
+td,
+input,
+h5 {
+  font-family: "Poppins-Bold";
+  font-weight: bolder;
+}
+
+h6,
+th,
+::placeholder {
+  font-family: "Poppins-Medium";
+  font-weight: normal;
+}
+
+input {
+  color: darkgrey;
+}
+body {
+  overflow-x: hidden;
+}
