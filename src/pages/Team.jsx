@@ -1,6 +1,6 @@
 import React from "react";
 import TeamCard from "../components/TeamCard";
-import Doctor1 from "../assets/adeeb.png";
+import Doctor1 from "../assets/Adeeb.png";
 import Doctor2 from "../assets/abrar.png";
 import Doctor3 from "../assets/abeer.png";
 import Doctor4 from "../assets/ahmad.png";
