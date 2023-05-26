@@ -92,7 +92,7 @@ const PatientsTable = () => {
   };
 
   return (
-    <div className="pt-10">
+    <div className="pt-10 w-screen px-10 bg-[#f3f2f2]">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
@@ -114,7 +114,7 @@ const PatientsTable = () => {
               <Search handleSearchResult={handleSearchResult} />
             </div>
           </caption>
-          <thead className="uppercase text-center  text-main">
+          <thead className="uppercase text-center bg-main text-white">
             <tr>
               <th scope="col" className="px-6 py-3">
                 #
@@ -129,13 +129,11 @@ const PatientsTable = () => {
                 City
               </th>
               <th scope="col" className="px-6 py-3">
-                Service
-              </th>
-              <th scope="col" className="px-6 py-3">
                 last Appointment
               </th>
+
               <th scope="col" className="px-6 py-3">
-                <span className="sr-only">Edit</span>
+                Edit/Delete{" "}
               </th>
             </tr>
           </thead>
@@ -188,19 +186,7 @@ const PatientsTable = () => {
                       patient.city
                     )}
                   </td>
-                  <td className="px-6 py-4">
-                    {" "}
-                    {editedPatient && editedPatient._id === patient._id ? (
-                      <input
-                        type="number"
-                        value={newService}
-                        onChange={(e) => setNewService(e.target.value)}
-                        className="border-2 border-fourth p-2 w-full rounded-lg"
-                      />
-                    ) : (
-                      patient.service
-                    )}
-                  </td>
+
                   <td className="px-6 py-4">
                     {" "}
                     {editedPatient && editedPatient._id === patient._id ? (

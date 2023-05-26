@@ -12,7 +12,7 @@ import Logo1 from "../assets/almas3.png";
 
 const App = () => {
   return (
-    <div className="bg-[#f2f5f9] ">
+    <div className="bg-white ">
       <div className="h-screen w-full">
         <div className="flex flex-col gap-8 p-10 ">
           <div className="flex ">
@@ -32,7 +32,7 @@ const App = () => {
               <div className="mt-2 mb-2 ml-2 text-lg ">
                 <BsFillPersonFill />
               </div>
-              <h5 className="mt-1">Patient Lists</h5>
+              <h5 className="mt-1">Patients List</h5>
             </div>
           </Link>
           <Link to="/calendar">

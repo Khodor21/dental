@@ -35,9 +35,21 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "IBMPlexSansArabic-Bold";
+  src: url("./fonts/IBMPlexSansArabic-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 50px; /* Optional: Adjust the scrolling offset if needed */
+  transition: 2s ease-in-out;
+}
+
+body {
+  transition: 2s ease-in-out;
 }
 
 .navbar-container {
@@ -64,7 +76,7 @@ button {
 }
 h3,
 select {
-  font-family: "ElMessiri-Bold";
+  font-family: "IBMPlexSansArabic-Bold";
 }
 
 caption,

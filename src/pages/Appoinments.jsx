@@ -123,7 +123,7 @@ const Appointments = () => {
         </div>
       </div>
 
-      <div className="lg:w-1/2 p-10 bg-main rounded-xl text-right">
+      <div className="lg:w-1/2 py-10 md:px-8 xs:px-6  bg-main rounded-xl text-right">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 3 }}
@@ -150,7 +150,7 @@ const Appointments = () => {
                 }}
               />
             </div>
-            <div className="text-right">
+            <div className="text-right xs:col-span-2 md:col-span-1">
               <label
                 className="block  text-white  font-bold mb-2"
                 htmlFor="name"
@@ -167,7 +167,7 @@ const Appointments = () => {
                 }}
               />
             </div>
-            <div>
+            <div className="text-right xs:col-span-2 md:col-span-1">
               <label
                 className="block text-white  font-bold mb-2"
                 htmlFor="city"
@@ -184,45 +184,6 @@ const Appointments = () => {
                 }}
               />
             </div>
-            {/* <div className="col-span-2">
-              <label
-                className="block text-white  font-bold mb-2"
-                htmlFor="service"
-              >
-                الخدمة
-              </label>
-              <select
-                className="shadow appearance-none border-third rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="service"
-                name="service"
-                onChange={(e) => {
-                  setService(e.target.value);
-                }}
-              >
-                <option value="" className="text-right">
-                  --الرجاء اختيار خدمة--
-                </option>
-                <option value="cleaning">Teeth Cleaning</option>
-                <option value="whitening">Teeth Whitening</option>
-                <option value="filling">Teeth Filling</option>
-              </select>
-            </div> */}
-            <div className="col-span-2">
-              <label
-                className="block text-white  font-bold mb-2"
-                htmlFor="message"
-              >
-                رسالة
-              </label>
-              <textarea
-                className="placeholder:text-right text-[#000] shadow appearance-none border-third rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="message"
-                placeholder="...اترك رسالة"
-                onChange={(e) => {
-                  setMessage(e.target.value);
-                }}
-              />
-            </div>
             <div className="col-span-2">
               <label
                 className="block text-white  font-bold mb-2"
@@ -235,7 +196,7 @@ const Appointments = () => {
                 onChange={(e) => {
                   setLast(e.target.value);
                 }}
-                className="shadow appearance-none text-[#000] border-third rounded w-full py-2 px-3  leading-tight"
+                className="shadow appearance-none text-[#000] border-third rounded w-full py-2 px-3 text-right leading-tight"
               />
             </div>
             <div className="col-span-2">
@@ -259,6 +220,22 @@ const Appointments = () => {
                 ))}
               </select>
             </div>
+            <div className="col-span-2">
+              <label
+                className="block text-white  font-bold mb-2"
+                htmlFor="message"
+              >
+                رسالة
+              </label>
+              <textarea
+                className="placeholder:text-right text-[#000] shadow appearance-none border-third rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="message"
+                placeholder="...اترك رسالة"
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                }}
+              />
+            </div>
             <div className="flex flex-col gap-2 col-span-2 text-white mt-4">
               <label>تأكيد تقديم طلب الموعد </label>
               <button
@@ -269,7 +246,6 @@ const Appointments = () => {
                 تأكيد
               </button>
             </div>
-
             <ToastContainer />
           </form>
         </motion.div>

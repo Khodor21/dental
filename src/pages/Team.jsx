@@ -1,9 +1,11 @@
 import React from "react";
 import TeamCard from "../components/TeamCard";
-import Doctor1 from "../assets/Adeeb.png";
-import Doctor2 from "../assets/abrar.png";
-import Doctor3 from "../assets/abeer.png";
-import Doctor4 from "../assets/ahmad.png";
+import Doctor1 from "../assets/doc1.jpg";
+import Doctor2 from "../assets/abrar.jpg";
+import Doctor3 from "../assets/abeer.jpg";
+import Doctor4 from "../assets/ahmad.jpg";
+import Doctor5 from "../assets/duaa.jpg";
+
 import { motion, AnimatePresence } from "framer-motion";
 
 const Team = () => {
@@ -22,31 +24,11 @@ const Team = () => {
         </AnimatePresence>
       </h3>{" "}
       <div className="grid md:grid-cols-2 grid-cols-1">
-        <TeamCard
-          Name="Dr. Adeeb Qarmout"
-          Age="+25 Years of experience"
-          Desc="Specialist in Implantology
-"
-          Image={Doctor1}
-        />
-        <TeamCard
-          Name="Dr. Abrar Saleh"
-          Age="+4 years of experience"
-          Desc="General Dentist"
-          Image={Doctor2}
-        />
-        <TeamCard
-          Name="Dr. Amina Abdulhameed"
-          Age="+2 Years of experience"
-          Desc="Aesthetic Dentist"
-          Image={Doctor3}
-        />
-        <TeamCard
-          Name="Dr. Ahmed El-Haj"
-          Age="+27 Years of experience"
-          Desc="Aesthetic Dentistry"
-          Image={Doctor4}
-        />
+        <TeamCard Image={Doctor1} />
+        <TeamCard Image={Doctor2} />
+        <TeamCard Image={Doctor3} />
+        <TeamCard Image={Doctor4} />
+        <TeamCard Image={Doctor5} />
       </div>
     </div>
   );

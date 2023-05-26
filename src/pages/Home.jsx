@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Message from "./Message";
-import { BsFillPersonFill } from "react-icons/bs";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -12,6 +11,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import DoughnutChart from "../components/patientBar";
+import PatientsHome from "../components/patientHome";
 
 ChartJS.register(
   CategoryScale,
@@ -27,6 +28,21 @@ const Admin = () => {
   const [chartOptions, setChartOptions] = useState({});
 
   const [monthNumber, setMonthNumber] = useState([]);
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   useEffect(() => {
     axios
       .get("http://localhost:8002/api/patients/getmonthpatients")
@@ -40,13 +56,14 @@ const Admin = () => {
 
   useEffect(() => {
     setChartData({
-      labels: monthNumber.map((patient) => patient._id),
+      labels: monthNumber.map((patient) => monthNames[patient._id - 1]),
       datasets: [
         {
-          label: "Patients",
+          label: "Incomes",
           data: monthNumber.map((patient) => patient.totalAppointments),
           borderColor: "#5E3B97",
           backgroundColor: "#5E3B97",
+          text: "Poppins",
         },
       ],
     });
@@ -58,61 +75,41 @@ const Admin = () => {
         title: {
           display: true,
           text: "Yearly Revenue",
+          font: "Poppins",
         },
       },
       maintainAspectRatio: false,
       responsive: true,
     });
-  }, []);
+  }, [monthNumber]); // Add monthNumber as a dependency
 
   console.log(monthNumber);
-  const [patients, setPatients] = useState([]);
-  useEffect(() => {
-    fetchPatients();
-  }, []);
-  const fetchPatients = () => {
-    axios
-      .get("http://localhost:8002/api/patients/getallpatients")
-      .then((response) => {
-        setPatients(response.data.patients);
-        console.log(response.data.patients);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+
   return (
     <>
-      <div className="w-full pt-10">
-        <div className="grid grid-cols-2 py-4 px-6">
-          <Message />
-
-          <div className="w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto py-4 px-10 border rounded-lg bg-main text-white overflow-scroll">
-            <div className="font-bold">Patient Details</div>
-            <table className="table-auto w-full">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th className="text-left py-2">Name</th>
-                  <th className="text-left py-2">Last Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {patients.map((patient, idx) => (
-                  <tr key={idx} className="">
-                    <td className="py-2">
-                      <BsFillPersonFill />
-                    </td>
-                    <td className="py-2">{patient.name}</td>
-                    <td className="py-2">{patient.last.substring(0, 10)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <div className="w-full pt-10 flex flex-col bg-[#f3f2f2]">
+        <h5 className="text-center text-main text-2xl pb-4">
+          Healthcare Dashboard: Patient Appointments, Subscriptions, and Profit
+          Analysis.
+        </h5>
+        <h6 className="mx-10 text-center">
+          Track patient appointments, subscriptions, and profitability with this
+          comprehensive healthcare dashboard. Stay organized with an intuitive
+          table view, manage patient subscriptions, and analyze profit trends.
+          Gain valuable insights and make informed decisions for efficient
+          healthcare operations.{" "}
+        </h6>
+        <div className="p-4 grid grid-cols-3  gap-4">
+          <div className="w-full col-span-2 relative h-full  m-auto p-4  rounded-lg bg-white">
+            <Bar data={chartData} options={chartOptions} />
           </div>
+          <PatientsHome />
         </div>
-        <div className="w-full">
-          <Bar data={chartData} options={chartOptions} />
+        <div className="p-4 grid grid-cols-3  gap-4">
+          <div className="w-full col-span-2 relative h-full  m-auto p-4  rounded-lg bg-white">
+            <DoughnutChart />
+          </div>
+          <Message />
         </div>
       </div>
     </>

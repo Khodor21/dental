@@ -4,10 +4,13 @@ const Admin = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [city, setCity] = useState("");
-  const [service, setService] = useState("");
   const [message, setMessage] = useState("");
   const [last, setLast] = useState("");
   const [timeSlot, setTimeSlot] = useState("");
+  const [price, setPrice] = useState("");
+  const [paymentN, setPaymentN] = useState("");
+  const [service, setService] = useState("");
+
   const availableTimeSlots = [
     " بين 9:00 صباحاً و ال 12 ظهراً",
     " بين 12:00 ظهراً و ال 6 مساءً",
@@ -34,6 +37,21 @@ const Admin = () => {
         city,
         last,
         timeSlot,
+        price,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const paymentsSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:8002/api/patients/payments", {
+        service,
+        price,
+        paymentN,
       })
       .then((response) => {})
       .catch((error) => {
@@ -41,7 +59,7 @@ const Admin = () => {
       });
   };
   return (
-    <div>
+    <div className="bg-[#f3f2f2]">
       <h5 className="text-center text-3xl pt-10 text-main">
         Admin Registration
       </h5>
@@ -105,29 +123,7 @@ const Admin = () => {
                 }}
               />
             </div>
-            <div className="col-span-2">
-              <label
-                className="block text-white  font-bold mb-2"
-                htmlFor="service"
-              >
-                الخدمة
-              </label>
-              <select
-                className="shadow appearance-none border-third rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="service"
-                name="service"
-                onChange={(e) => {
-                  setService(e.target.value);
-                }}
-              >
-                <option value="" className="text-right">
-                  --الرجاء اختيار خدمة--
-                </option>
-                <option value="cleaning">Teeth Cleaning</option>
-                <option value="whitening">Teeth Whitening</option>
-                <option value="filling">Teeth Filling</option>
-              </select>
-            </div>
+
             <div className="col-span-2">
               <label
                 className="block text-white  font-bold mb-2"
@@ -205,7 +201,7 @@ const Admin = () => {
                 type="text"
                 placeholder="مثـال: محمد بن عبدالله"
                 onChange={(e) => {
-                  setName(e.target.value);
+                  setPaymentN(e.target.value);
                 }}
               />
             </div>
@@ -217,7 +213,12 @@ const Admin = () => {
               >
                 الخدمة
               </label>
-              <input className="placeholder:text-right shadow appearance-none text-[#000] border-third rounded w-full py-2 px-3  leading-tight" />
+              <input
+                onChange={(e) => {
+                  setService(e.target.value);
+                }}
+                className="placeholder:text-right shadow appearance-none text-[#000] border-third rounded w-full py-2 px-3  leading-tight"
+              />
             </div>
 
             <div className="col-span-2">
@@ -230,7 +231,7 @@ const Admin = () => {
               <input
                 type="number"
                 onChange={(e) => {
-                  setLast(e.target.value);
+                  setPrice(e.target.value);
                 }}
                 className="shadow appearance-none text-[#000] border-third rounded w-full py-2 px-3  leading-tight"
               />
@@ -240,7 +241,7 @@ const Admin = () => {
               <label>تأكيد الدفع </label>
               <input
                 type="submit"
-                onSubmit={handleSubmit}
+                onSubmit={paymentsSubmit}
                 className="border rounded-md text-main bg-white w-full text-center cursor-pointer"
               />
             </div>

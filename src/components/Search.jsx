@@ -27,7 +27,7 @@ const Search = ({ handleSearchResult }) => {
         type="text"
         value={query}
         onChange={handleInputChange}
-        className="border border-main rounded w-full"
+        className="border border-main rounded w-full placeholder:px-2"
         placeholder="Search for patients here..."
       />
       <button onClick={handleSearch} className="ml-2 bg-main rounded shadow-xl">

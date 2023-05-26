@@ -7,6 +7,8 @@ import Main from "./Main";
 import Footer from "./Footer";
 import Carousell from "./Carousel";
 import Team from "./Team";
+import Companies from "./Companies";
+import BefAft from "./BefAft";
 
 const Hero = () => {
   return (
@@ -18,6 +20,8 @@ const Hero = () => {
       <Appointments />
       <Carousell />
       <Team />
+      <BefAft />
+      <Companies />
       <Maps />
       <Footer />
     </div>
