@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Message from "./Message";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -89,7 +88,7 @@ const Admin = () => {
 
   return (
     <>
-      <div className="w-full pt-10  flex flex-col bg-[#ffff]">
+      <div className="w-full pt-10  flex flex-col bg-[#f0f0f0]">
         <h5 className="text-center text-main text-2xl pb-4">
           Healthcare Dashboard: Patient Appointments, Subscriptions, and Profit
           Analysis.

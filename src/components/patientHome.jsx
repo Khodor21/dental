@@ -24,7 +24,7 @@ const PatientsHome = () => {
 
   return (
     <div>
-      <div className="w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 rounded-lg bg-[#f3f2f2] text-main overflow-x-scroll">
+      <div className="w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 rounded-lg bg-[#fff] text-main overflow-x-scroll">
         <div className="font-bold">
           <td className="text-[#000]">Last 20 Appoinments</td>
         </div>

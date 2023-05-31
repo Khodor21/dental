@@ -12,7 +12,7 @@ import Logo1 from "../assets/almas3.png";
 
 const App = () => {
   return (
-    <div className="bg-[#f3f2f2] ">
+    <div className="bg-[#fff] ">
       <div className="h-screen w-full">
         <div className="flex flex-col gap-8 p-10 ">
           <div className="flex ">
