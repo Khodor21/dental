@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import DoughnutChart from "../components/patientBar";
 import PatientsHome from "../components/patientHome";
+import MessageHome from "../components/MessageHome";
 
 ChartJS.register(
   CategoryScale,
@@ -27,7 +28,7 @@ const Admin = () => {
   const [chartData, setChartData] = useState({ datasets: [] });
   const [chartOptions, setChartOptions] = useState({});
 
-  const [monthNumber, setMonthNumber] = useState([]);
+  const [monthIncome, setMonthIncome] = useState([]);
   const monthNames = [
     "January",
     "February",
@@ -45,9 +46,10 @@ const Admin = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8002/api/patients/getmonthpatients")
+      .get("http://localhost:8002/api/patients/income")
       .then((res) => {
-        setMonthNumber(res.data.appointmentsByMonth);
+        setMonthIncome(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -56,11 +58,11 @@ const Admin = () => {
 
   useEffect(() => {
     setChartData({
-      labels: monthNumber.map((patient) => monthNames[patient._id - 1]),
+      labels: monthIncome.map((income) => monthNames[income._id - 1]),
       datasets: [
         {
           label: "Incomes",
-          data: monthNumber.map((patient) => patient.totalAppointments),
+          data: monthIncome.map((income) => income.totalIncome),
           borderColor: "#5E3B97",
           backgroundColor: "#5E3B97",
           text: "Poppins",
@@ -81,13 +83,13 @@ const Admin = () => {
       maintainAspectRatio: false,
       responsive: true,
     });
-  }, [monthNumber]); // Add monthNumber as a dependency
+  }, [monthIncome]); // Add monthIncome as a dependency
 
-  console.log(monthNumber);
+  console.log(monthIncome);
 
   return (
     <>
-      <div className="w-full pt-10 flex flex-col bg-[#f3f2f2]">
+      <div className="w-full pt-10  flex flex-col bg-[#ffff]">
         <h5 className="text-center text-main text-2xl pb-4">
           Healthcare Dashboard: Patient Appointments, Subscriptions, and Profit
           Analysis.
@@ -109,7 +111,7 @@ const Admin = () => {
           <div className="w-full col-span-2 relative h-full  m-auto p-4  rounded-lg bg-white">
             <DoughnutChart />
           </div>
-          <Message />
+          <MessageHome />
         </div>
       </div>
     </>

@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("./fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.rbc-calendar,
+.rbc-calendar * {
+  font-family: "Poppins-Bold", sans-serif !important;
+}

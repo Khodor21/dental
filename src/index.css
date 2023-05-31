@@ -51,6 +51,9 @@ html {
 body {
   transition: 2s ease-in-out;
 }
+.font-main {
+  font-family: Poppins-Bold, sans-serif;
+}
 
 .navbar-container {
   position: fixed;
@@ -82,9 +85,10 @@ select {
 caption,
 td,
 input,
-h5 {
-  font-family: "Poppins-Bold";
-  font-weight: bolder;
+h5,
+.poppins-bold-calendar {
+  font-family: "Poppins-Bold" !important;
+  font-weight: bolder !important;
 }
 
 h6,

@@ -6,7 +6,7 @@ import { CiEdit } from "react-icons/ci";
 import Search from "../components/Search";
 
 const PatientsTable = () => {
-  const [patients, setPatients] = useState([]);
+  const [patients, setPayments] = useState([]);
   const [editedPatient, setEditedPatient] = useState(null);
   const [deletedPatient, setDeletedPatient] = useState(null);
 
@@ -22,9 +22,10 @@ const PatientsTable = () => {
 
   const fetchPatients = () => {
     axios
-      .get("http://localhost:8002/api/patients/getallpatients")
+      .get("http://localhost:8002/api/patients/getPayments")
       .then((response) => {
-        setPatients(response.data.patients);
+        const reversePaymentList = response.data.reverse();
+        setPayments(reversePaymentList);
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +46,7 @@ const PatientsTable = () => {
       axios
         .delete(`http://localhost:8002/api/patients/${patient._id}`)
         .then(() => {
-          setPatients(patients.filter((p) => p._id !== patient._id));
+          setPayments(patients.filter((p) => p._id !== patient._id));
         })
         .catch((error) => {
           console.error(error);
@@ -88,11 +89,11 @@ const PatientsTable = () => {
   };
 
   const handleSearchResult = (searchResults) => {
-    setPatients(searchResults);
+    setPayments(searchResults);
   };
 
   return (
-    <div className="pt-10 w-screen px-10 bg-[#f3f2f2]">
+    <div className="pt-10 w-screen px-10">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
@@ -152,10 +153,10 @@ const PatientsTable = () => {
                         type="text"
                         value={newName}
                         onChange={(e) => setNewName(e.target.value)}
-                        className="border-2 border-gray-200 p-2 w-full rounded-lg"
+                        className="border-2 border-gray-200 p-2 w-full rou-nded-lg"
                       />
                     ) : (
-                      patient.name
+                      patient.paymentName
                     )}
                   </td>
 
@@ -168,20 +169,24 @@ const PatientsTable = () => {
                         className="border-2 border-fourth p-2 w-full rounded-lg"
                       />
                     ) : (
-                      patient.number
+                      patient.service
                     )}
                   </td>
                   <td className="px-6 py-4">
-                    {" "}
                     {editedPatient && editedPatient._id === patient._id ? (
-                      <input
-                        type="number"
-                        value={newCity}
-                        onChange={(e) => setNewCity(e.target.value)}
-                        className="border-2 border-fourth p-2 w-full rounded-lg"
-                      />
+                      <div className="flex items-center">
+                        <input
+                          type="number"
+                          value={newCity}
+                          onChange={(e) => setNewCity(e.target.value)}
+                          className="border-2 border-fourth p-2 w-full rounded-lg"
+                        />
+                      </div>
                     ) : (
-                      patient.city
+                      <div className="flex items-center justify-center gap-[0.25rem]">
+                        <h5 className="text-main"> {patient.price}</h5>{" "}
+                        <h6 className="">BHD</h6>
+                      </div>
                     )}
                   </td>
 
@@ -195,7 +200,7 @@ const PatientsTable = () => {
                         className="border-2 border-fourth p-2 w-full rounded-lg"
                       />
                     ) : (
-                      patient.last.substring(0, 10)
+                      patient.date.substring(-5, 10)
                     )}
                   </td>
 

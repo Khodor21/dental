@@ -24,7 +24,8 @@ const PatientsTable = () => {
     axios
       .get("http://localhost:8002/api/patients/getallpatients")
       .then((response) => {
-        setPatients(response.data.patients);
+        const reversedPatients = response.data.patients.reverse();
+        setPatients(reversedPatients);
       })
       .catch((error) => {
         console.log(error);
@@ -92,7 +93,7 @@ const PatientsTable = () => {
   };
 
   return (
-    <div className="pt-10 w-screen px-10 bg-[#f3f2f2]">
+    <div className="pt-10 w-screen px-10">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">

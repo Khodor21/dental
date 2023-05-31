@@ -1,49 +1,44 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BsFillPersonFill } from "react-icons/bs";
-
-const PatientsHome = () => {
-  const [patients, setPatients] = useState([]);
-
+const MessageHome = () => {
+  const [message, setMessage] = useState([]);
   useEffect(() => {
-    fetchPatients();
+    fetchMessage();
   }, []);
 
-  const fetchPatients = () => {
+  const fetchMessage = () => {
     axios
-      .get("http://localhost:8002/api/patients/getallpatients")
+      .get("http://localhost:8002/api/patients/getMessage")
       .then((response) => {
-        const allPatients = response.data.patients;
-        const last20Patients = allPatients.slice(-20).reverse(); // Slice the last 20 patients and reverse the order
-        setPatients(last20Patients);
+        const reverseData = response.data.slice(-5).reverse();
+        setMessage(reverseData);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
   return (
     <div>
       <div className="w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 rounded-lg bg-[#f3f2f2] text-main overflow-x-scroll">
         <div className="font-bold">
-          <td className="text-[#000]">Last 20 Appoinments</td>
+          <td className="text-[#000]">Last 5 Subscribers</td>
         </div>
         <table className="table-auto w-full">
           <thead>
             <tr className="text-[#000]">
-              <th>Nb.</th>
+              <th>#</th>
               <th className="text-left py-2">Name</th>
-              <th className="text-left py-2">Date</th>
+              <th className="text-left py-2">Phone Number</th>
             </tr>
           </thead>
           <tbody className="">
-            {patients.map((patient, index) => (
+            {message.map((messages, index) => (
               <tr key={index} className="text-main">
                 <td className="py-2">
                   <td className="py-2">{index + 1}-</td>
                 </td>
-                <td className="py-2 text-sm">{patient.name}</td>
-                <td className="py-2">{patient.last.substring(5, 10)}</td>
+                <td className="py-2 text-sm">{messages.name}</td>
+                <td className="py-2">{messages.phone}</td>
               </tr>
             ))}
           </tbody>
@@ -53,4 +48,4 @@ const PatientsHome = () => {
   );
 };
 
-export default PatientsHome;
+export default MessageHome;
