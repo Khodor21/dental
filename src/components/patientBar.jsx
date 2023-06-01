@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import get from "lodash/get";
+
+import { PieChart, Pie, Cell, Tooltip } from "../../node_modules/recharts";
 import axios from "axios";
 import chroma from "chroma-js";
 
