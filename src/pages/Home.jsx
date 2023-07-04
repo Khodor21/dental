@@ -10,9 +10,10 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import DoughnutChart from "../components/patientBar";
+import Example from "../components/patientBar";
 import PatientsHome from "../components/patientHome";
 import MessageHome from "../components/MessageHome";
+import TopData from "../components/TopData";
 
 ChartJS.register(
   CategoryScale,
@@ -48,11 +49,8 @@ const Admin = () => {
       .get("http://localhost:8002/api/patients/income")
       .then((res) => {
         setMonthIncome(res.data);
-        console.log(res.data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   }, []);
 
   useEffect(() => {
@@ -84,8 +82,6 @@ const Admin = () => {
     });
   }, [monthIncome]); // Add monthIncome as a dependency
 
-  console.log(monthIncome);
-
   return (
     <>
       <div className="w-full pt-10  flex flex-col bg-[#f0f0f0]">
@@ -100,7 +96,8 @@ const Admin = () => {
           Gain valuable insights and make informed decisions for efficient
           healthcare operations.{" "}
         </h6>
-        <div className="p-4 grid grid-cols-3  gap-4">
+        <TopData />
+        <div className="px-4 pb-4  grid grid-cols-3  gap-4">
           <div className="w-full col-span-2 relative h-full  m-auto p-4  rounded-lg bg-white">
             <Bar data={chartData} options={chartOptions} />
           </div>
@@ -108,7 +105,7 @@ const Admin = () => {
         </div>
         <div className="p-4 grid grid-cols-3  gap-4">
           <div className="w-full col-span-2 relative h-full  m-auto p-4  rounded-lg bg-white">
-            <DoughnutChart />
+            <Example />
           </div>
           <MessageHome />
         </div>

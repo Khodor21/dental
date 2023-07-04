@@ -3,6 +3,8 @@ import axios from "axios";
 import PaymentsForm from "../components/PaymentsForm";
 import DragAndDrop from "../components/Drag";
 import ChatApp from "../components/chatApp";
+import Blog from "../components/Blog";
+import { BsClipboardData } from "react-icons/bs";
 
 const Admin = () => {
   const [name, setName] = useState("");
@@ -47,18 +49,20 @@ const Admin = () => {
   };
 
   return (
-    <div className="">
+    <div className="bg-[#f0f0f0]">
       <h5 className="text-center text-3xl pt-10 text-main">
         Admin Registration
       </h5>
       <h6 className="text-center text-xl pt-4 text-third mx-10">
-        {" "}
         "This page is used by the admin to register any patient who registers
         either by phone or directly at the clinic."
       </h6>
       <div className="flex justify-between items-center gap-8 p-10">
         <div className="lg:w-1/2 p-10 bg-main rounded-xl text-right ">
-          <h5 className="text-white text-center">Patient Appoinment</h5>{" "}
+          <div className="flex items-center justify-center text-white font-extrabold text-2xl mb-2">
+            <BsClipboardData />
+          </div>
+          <h5 className="text-white text-center">Patient Appoinment</h5>
           <form className="grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
             <div className="col-span-2">
               <label
@@ -178,10 +182,8 @@ const Admin = () => {
         </div>
       </div>
       <div>
-        {" "}
-        <DragAndDrop />
-        <ChatApp />
-      </div>{" "}
+        <Blog />
+      </div>
     </div>
   );
 };

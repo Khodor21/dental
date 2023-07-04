@@ -9,15 +9,17 @@ import Carousell from "./Carousel";
 import Team from "./Team";
 import Companies from "./Companies";
 import BefAft from "./BefAft";
+import Chat from "../components/Chat";
 
 const Hero = () => {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden bg-[#ffffff]">
       <Navbar />
 
       <Main />
       <HeroServices />
       <Appointments />
+      <Chat />
       <Carousell />
       <Team />
       <BefAft />

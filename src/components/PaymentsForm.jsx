@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { GiTakeMyMoney } from "react-icons/gi";
+
 const PaymentsForm = () => {
   const [paymentName, setPaymentN] = useState("");
   const [service, setService] = useState("");
@@ -25,6 +27,9 @@ const PaymentsForm = () => {
   };
   return (
     <div>
+      <div className="flex items-center justify-center text-white font-extrabold text-2xl mb-2">
+        <GiTakeMyMoney />
+      </div>
       <h5 className="text-white text-center">Patient Payment</h5>{" "}
       <form className="grid grid-cols-2 gap-4" onSubmit={paymentsSubmit}>
         <div className="col-span-2">

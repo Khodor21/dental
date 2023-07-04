@@ -1,19 +1,15 @@
 import React from "react";
 import { BiHomeSmile } from "react-icons/bi";
-import { BsFillPersonFill } from "react-icons/bs";
-import {
-  AiOutlineMessage,
-  AiOutlineSetting,
-  AiOutlineCalendar,
-} from "react-icons/ai";
+import { BsFillPersonFill, BsPhoneFlip } from "react-icons/bs";
+import { AiOutlineSetting, AiOutlineCalendar } from "react-icons/ai";
 import { MdPayment } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Logo1 from "../assets/almas3.png";
 
 const App = () => {
   return (
-    <div className="bg-[#fff] ">
-      <div className="h-screen w-full">
+    <div className="bg-[#fff]">
+      <div className="h-screen w-full ">
         <div className="flex flex-col gap-8 p-10 ">
           <div className="flex ">
             <img src={Logo1} className="sm:h-[42px] xs:h-[42px] mr-2" />
@@ -43,12 +39,12 @@ const App = () => {
               <h5 className="mt-1">Calendar</h5>
             </div>
           </Link>
-          <Link to="/message">
+          <Link to="/subscribers">
             <div className="flex gap-4 rounded-[4px] hover:bg-main hover:text-white">
               <div className="mt-2 mb-2 ml-2 text-lg ">
-                <AiOutlineMessage />
+                <BsPhoneFlip />
               </div>
-              <h5 className="mt-1">Messages</h5>
+              <h5 className="mt-1">Subscribers </h5>
             </div>
           </Link>
           <Link to="/payments">

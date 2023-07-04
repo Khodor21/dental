@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 const MessageHome = () => {
   const [message, setMessage] = useState([]);
+
   useEffect(() => {
     fetchMessage();
   }, []);
@@ -17,28 +19,25 @@ const MessageHome = () => {
         console.log(error);
       });
   };
+
   return (
     <div>
-      <div className="w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 rounded-lg bg-[#fff] text-main overflow-x-scroll">
-        <div className="font-bold">
-          <td className="text-[#000]">Last 5 Subscribers</td>
-        </div>
+      <div className="w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 rounded-lg bg-[#fff] text-main">
+        <h5 className="text-[#000] font-bold">Last 5 Subscribers</h5>
         <table className="table-auto w-full">
           <thead>
             <tr className="text-[#000]">
               <th>#</th>
               <th className="text-left py-2">Name</th>
-              <th className="text-left py-2">Phone Number</th>
+              <th className="text-left py-2">Phone</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody>
             {message.map((messages, index) => (
-              <tr key={index} className="text-main">
-                <td className="py-2">
-                  <td className="py-2">{index + 1}-</td>
-                </td>
+              <tr key={index} className="text-main border-b border-[#000]">
+                <td>{index + 1}-</td>
                 <td className="py-2 text-sm">{messages.name}</td>
-                <td className="py-2">{messages.phone}</td>
+                <td className="py-4">{messages.phone}</td>
               </tr>
             ))}
           </tbody>

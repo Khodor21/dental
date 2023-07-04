@@ -3,7 +3,6 @@ import PatientsTable from "./pages/PatientsTable";
 import SideBar from "./pages/SideBar.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Payments from "./pages/Payments";
-
 import Calendar from "./pages/Calendar";
 import Hero from "./pages/hero";
 import Carousell from "./pages/Carousel";
@@ -27,7 +26,7 @@ const App = () => {
           <Route path="/" element={<Hero />} />
           <Route path="home" element={<Home />} />
           <Route path="admin-page" element={<Admin />} />
-          <Route path="message" element={<Message />} />
+          <Route path="subscribers" element={<Message />} />
         </Routes>
       </div>
     </Router>

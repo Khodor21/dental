@@ -11,8 +11,8 @@ const PatientsTable = () => {
   const [deletedPatient, setDeletedPatient] = useState(null);
 
   const [newName, setNewName] = useState("");
+  const [newPrice, setNewPrice] = useState("");
   const [newPhone, setNewPhone] = useState("");
-  const [newCity, setNewCity] = useState("");
   const [newService, setNewService] = useState("");
   const [newDate, setNewDate] = useState("");
 
@@ -26,6 +26,7 @@ const PatientsTable = () => {
       .then((response) => {
         const reversePaymentList = response.data.reverse();
         setPayments(reversePaymentList);
+        console.log(reversePaymentList);
       })
       .catch((error) => {
         console.log(error);
@@ -36,9 +37,9 @@ const PatientsTable = () => {
     setEditedPatient(patient);
     setNewName(patient.name);
     setNewPhone(patient.number);
+    setNewPrice(patient.price);
     setNewService(patient.service);
-    setNewCity(patient.city);
-    setNewDate(patient.last);
+    setNewDate(patient.date);
   };
 
   const handleDelete = (patient) => {
@@ -64,23 +65,25 @@ const PatientsTable = () => {
   const handleSave = () => {
     const updatedPatient = {
       ...editedPatient,
-      name: newName,
+      paymentName: newName,
+      price: newPrice,
       number: newPhone,
-      city: newCity,
-      last: newDate,
+      date: newDate,
       service: newService,
     };
+
     axios
       .put(
         `http://localhost:8002/api/patients/${editedPatient._id}`,
         updatedPatient
       )
       .then((response) => {
-        fetchPatients(); // Fetch the updated list of patients after saving the edit
+        fetchPatients();
       })
       .catch((error) => {
         console.log(error);
       });
+
     setEditedPatient(null);
   };
 
@@ -93,11 +96,11 @@ const PatientsTable = () => {
   };
 
   return (
-    <div className="pt-10 w-screen px-10">
+    <div className="pt-10 w-screen px-10 bg-[#f0f0f0]">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-            <div className="flex justify-between  text-main ">
+            <div className="flex justify-between text-main">
               <div className="flex gap-2 text-3xl">
                 <div className="mt-[2px]">
                   <GiReceiveMoney />
@@ -105,7 +108,11 @@ const PatientsTable = () => {
                 Payment History
               </div>
             </div>
-            <h6 className="mt-3 text-sm font-normal">
+            <h6
+              className="mt-3 text-sm
+
+ font-normal"
+            >
               Stay organized with a comprehensive overview of all financial
               transactions, allowing you to track payments made by patients,
               view outstanding balances, and manage revenue effortlessly.
@@ -153,19 +160,19 @@ const PatientsTable = () => {
                         type="text"
                         value={newName}
                         onChange={(e) => setNewName(e.target.value)}
-                        className="border-2 border-gray-200 p-2 w-full rou-nded-lg"
+                        className="border-2 border-gray-200 p-2 w-full rounded-lg"
                       />
                     ) : (
-                      patient.paymentName
+                      <div className="text-main">{patient.paymentName}</div>
                     )}
                   </td>
 
                   <td className="">
                     {editedPatient && editedPatient._id === patient._id ? (
                       <input
-                        type="number"
-                        value={newPhone}
-                        onChange={(e) => setNewPhone(e.target.value)}
+                        type="text"
+                        value={newService}
+                        onChange={(e) => setNewService(e.target.value)}
                         className="border-2 border-fourth p-2 w-full rounded-lg"
                       />
                     ) : (
@@ -176,25 +183,24 @@ const PatientsTable = () => {
                     {editedPatient && editedPatient._id === patient._id ? (
                       <div className="flex items-center">
                         <input
-                          type="number"
-                          value={newCity}
-                          onChange={(e) => setNewCity(e.target.value)}
+                          type="text"
+                          value={newPrice}
+                          onChange={(e) => setNewPrice(e.target.value)}
                           className="border-2 border-fourth p-2 w-full rounded-lg"
                         />
                       </div>
                     ) : (
                       <div className="flex items-center justify-center gap-[0.25rem]">
-                        <h5 className="text-main"> {patient.price}</h5>{" "}
+                        <h5 className="text-main">{patient.price}</h5>
                         <h6 className="">BHD</h6>
                       </div>
                     )}
                   </td>
 
                   <td className="px-6 py-4">
-                    {" "}
                     {editedPatient && editedPatient._id === patient._id ? (
                       <input
-                        type="number"
+                        type="date"
                         value={newDate}
                         onChange={(e) => setNewDate(e.target.value)}
                         className="border-2 border-fourth p-2 w-full rounded-lg"
@@ -204,31 +210,44 @@ const PatientsTable = () => {
                     )}
                   </td>
 
-                  <td className="px-6 py-4 text-right">
-                    <button
-                      onClick={() => deletePatient(patient)}
-                      className=" text-red text-2xl"
-                    >
-                      {<AiOutlineDelete />}
-                    </button>
-
-                    <button
-                      onClick={() => handleEdit(patient)}
-                      className=" text-main text-2xl"
-                    >
-                      <CiEdit />{" "}
-                    </button>
+                  <td className="px-6 py-4 text-center">
+                    {editedPatient && editedPatient._id === patient._id ? (
+                      <div className="flex justify-center gap-2">
+                        <button
+                          onClick={handleSave}
+                          className="text-xs bg-main hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg"
+                        >
+                          Save
+                        </button>
+                        <button
+                          onClick={handleCancel}
+                          className="text-xs bg-red-600 hover:bg-red-700 text-[#000] font-semibold py-2 px-4 rounded-lg"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="flex justify-center gap-2">
+                        <button
+                          onClick={() => handleEdit(patient)}
+                          className="text-main text-2xl"
+                        >
+                          <CiEdit />
+                        </button>
+                        <button
+                          onClick={() => deletePatient(patient)}
+                          className="text-red text-2xl"
+                        >
+                          <AiOutlineDelete />
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
-      <button onClick={handleSave} className="pt-10 ">
-        <div className="bg-main rounded-lg text-white">
-          <h1 className="m-4"> Press To Save Your Edit</h1>
-        </div>
-      </button>
     </div>
   );
 };

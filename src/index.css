@@ -86,7 +86,8 @@ caption,
 td,
 input,
 h5,
-.poppins-bold-calendar {
+.poppins-bold-calendar,
+select {
   font-family: "Poppins-Bold" !important;
   font-weight: bolder !important;
 }

@@ -34,10 +34,7 @@ const Message = () => {
   const handleEdit = (patient) => {
     setEditedMessage(patient);
     setNewName(patient.name);
-    setNewPhone(patient.number);
-    setNewService(patient.service);
-    setNewCity(patient.city);
-    setNewDate(patient.last);
+    setNewPhone(patient.phone);
   };
 
   const handleDelete = (message) => {
@@ -64,14 +61,11 @@ const Message = () => {
     const updatedPatient = {
       ...editedMessage,
       name: newName,
-      number: newPhone,
-      city: newCity,
-      last: newDate,
-      service: newService,
+      phone: newPhone,
     };
     axios
       .put(
-        `http://localhost:8002/api/patients/${editedMessage._id}`,
+        `http://localhost:8002/api/messages/${editedMessage._id}`,
         updatedPatient
       )
       .then((response) => {
@@ -92,7 +86,7 @@ const Message = () => {
   };
 
   return (
-    <div className="pt-10 w-screen px-10 ">
+    <div className="pt-10 w-screen px-10 bg-[#f0f0f0]">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
@@ -134,11 +128,8 @@ const Message = () => {
           <tbody className="text-center">
             {messages &&
               messages.map((patient, index) => (
-                <tr
-                  key={patient.id}
-                  className="bg-white border-b text-cn dark:bg-gray-800 dark:border-gray-700"
-                >
-                  <td className="px-6 py-4">{index + 1}-</td>
+                <tr key={patient.id} className="bg-white border-b">
+                  <td className="px-6 py-4 text-main">{index + 1}-</td>
                   <td
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -164,11 +155,11 @@ const Message = () => {
                         className="border-2 border-fourth p-2 w-full rounded-lg"
                       />
                     ) : (
-                      patient.phone
+                      <div className="text-main">{patient.phone}</div>
                     )}
                   </td>
 
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-6 py-4 text-center">
                     <button
                       onClick={() => deletePatient(patient)}
                       className=" text-red text-2xl"

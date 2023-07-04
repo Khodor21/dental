@@ -25,9 +25,7 @@ const PatientsHome = () => {
   return (
     <div>
       <div className="w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 rounded-lg bg-[#fff] text-main overflow-x-scroll">
-        <div className="font-bold">
-          <td className="text-[#000]">Last 20 Appoinments</td>
-        </div>
+        <h5 className="text-[#000] font-bold">Last 20 Appointments</h5>
         <table className="table-auto w-full">
           <thead>
             <tr className="text-[#000]">
@@ -36,14 +34,12 @@ const PatientsHome = () => {
               <th className="text-left py-2">Date</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody>
             {patients.map((patient, index) => (
-              <tr key={index} className="text-main">
-                <td className="py-2">
-                  <td className="py-2">{index + 1}-</td>
-                </td>
+              <tr key={index} className="text-main border-b border-[#000]">
+                <td>{index + 1}-</td>
                 <td className="py-2 text-sm">{patient.name}</td>
-                <td className="py-2">{patient.last.substring(5, 10)}</td>
+                <td className="py-4">{patient.last.substring(5, 10)}</td>
               </tr>
             ))}
           </tbody>
